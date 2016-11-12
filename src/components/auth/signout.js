@@ -9,13 +9,11 @@ class Signout extends Component {
 	}
 
 	render() {
-		return '<div>Sorry to see you go</div>';
+		return (
+			<div>Sorry to see you go</div>
+		);
 	}
 
 }
 
-function mapStateToProps() {
-	return null;
-}
-
-export default connect(mapStateToProps, actions)(Signout);
+export default connect(null, actions)(Signout);
