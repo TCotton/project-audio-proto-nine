@@ -6,10 +6,7 @@ export function signinUser({email, password}) {
 
 	return function(dispatch) {
 
-		axios.post(`$(ROOT_URL)/signin`, {email, password});
-
-
-
+		axios.post(`${ROOT_URL}/signin`, {email, password});
 
 		// submit email/password to the server
 
@@ -23,6 +20,5 @@ export function signinUser({email, password}) {
 
 
 	};
-
 
 }

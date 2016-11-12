@@ -1,39 +1,35 @@
 import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import {bindActionCreators} from 'redux';
-import {signinUser} from '../../actions';
+import * as actions from '../../actions';
 
 class Signin extends Component {
 
-	constructor() {
-		super(...arguments);
-		this.handleFormSubmit = this.handleFormSubmit.bind(this);
-	}
-
 	handleFormSubmit({email, password}) {
+		console.log(email, password);
 		this.props.signinUser({email, password});
 	}
 
 	render() {
 
+		console.dir(this.props);
+
 		const {handleSubmit, fields: {email, password}} = this.props;
 
-		console.dir(email);
-
 		return (
-			<form onSubmit={handleSubmit(this.handleFormSubmit)}>
+			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} name="signin">
 
 				<fieldset className="form-group">
 
 					<label htmlFor="emailSignin">Email:</label><br />
-					<input {...email} type="text" id="emailSignin" className="form-control"/>
+					<input {...email} type="text" id="emailSignin" name="emailSignin" className="form-control"/>
 
 				</fieldset>
 
 				<fieldset className="form-group">
 
 					<label htmlFor="passwordSignin">Password:</label><br />
-					<input {...password} type="text" id="passwordSignin" className="form-control"/>
+					<input {...password} type="text" id="passwordSignin" name="passwordSignin" className="form-control"/>
 
 				</fieldset>
 
@@ -50,15 +46,19 @@ class Signin extends Component {
 
 }
 
+/*
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({signinUser}, dispatch);
 }
+*/
+/*
 
 function mapStateToProps() {
 	return null;
 }
+*/
 
 export default reduxForm({
 	form: 'signin',
 	fields: ['email', 'password']
-}, mapStateToProps, mapDispatchToProps)(Signin);
+}, null, actions)(Signin);
