@@ -6,7 +6,7 @@ export default function(state = {}, action = null) {
 
 		case AUTH_USER:
 
-			return {...state, authenticated: true};
+			return {...state, error: '', authenticated: true};
 
 			break;
 
