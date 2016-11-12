@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {reduxForm, propTypes} from 'redux-form';
-import {bindActionCreators} from 'redux';
+// import {bindActionCreators} from 'redux';
 import * as actions from '../../actions';
 
 class Signin extends Component {
@@ -16,8 +16,6 @@ class Signin extends Component {
 	}
 
 	renderAlert() {
-
-		console.log(this.props.errorMessage);
 
 		if (this.props.errorMessage) {
 			return (
@@ -39,14 +37,14 @@ class Signin extends Component {
 				<fieldset className="form-group">
 
 					<label htmlFor="emailSignin">Email:</label><br />
-					<input {...email} type="text" id="emailSignin" className="form-control"/>
+					<input {...email} type="email" id="emailSignin" className="form-control"/>
 
 				</fieldset>
 
 				<fieldset className="form-group">
 
 					<label htmlFor="passwordSignin">Password:</label><br />
-					<input {...password} type="text" id="passwordSignin" className="form-control"/>
+					<input {...password} type="password" id="passwordSignin" className="form-control"/>
 
 				</fieldset>
 
