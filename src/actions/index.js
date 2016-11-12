@@ -24,14 +24,43 @@ export function signinUser({email, password}) {
 			// - redirect to the route './feature'
 			browserHistory.push('/feature');
 
-		}).catch(() => {
+		}).catch((response) => {
 
 			// if request is bad
-			dispatch(authError('Bad login info'));
+			dispatch(authError(response.message));
 
 		});
 
 	};
+
+}
+
+export function signupUser({email, password}) {
+
+	return function(dispatch) {
+
+		// submit email/password to the server
+
+		axios.post(`${ROOT_URL}/signin`, {email, password}).then(response => {
+
+			// if request is good...
+			// - Update state to indicate user is authenticated
+			dispatch({type: AUTH_USER});
+			// - Save the JWT token
+			localStorage.setItem('token', response.data.token);
+			// - redirect to the route './feature'
+			browserHistory.push('/feature');
+
+		}).catch((response) => {
+
+			// if request is bad
+			dispatch(authError(response.message));
+
+		});
+
+	};
+
+
 
 }
 
